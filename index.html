@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RP Roofing and Home Improvements LTD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+    }
+
+    /* ✅ Floating Island Header */
+    .header-wrapper {
+      position: sticky;
+      top: 12px;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    header {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      max-width: 1100px;
+      width: 90%;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      pointer-events: auto;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      color: red;
+    }
+
+    .logo strong {
+      color: #297CFF;
+      margin-left: 2px;
+    }
+
+    .menu button {
+      background: #297CFF;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 100px 20px 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #555;
+    }
+
+    .membership {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0;
+    }
+
+    .avatars {
+      display: flex;
+      margin-right: 10px;
+    }
+
+    .avatars img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      margin-left: -10px;
+    }
+
+    .membership-text {
+      font-weight: 600;
+    }
+
+    .form-section {
+      background: url('https://images.unsplash.com/photo-1581093458791-1c8d3c2784f3?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      padding: 80px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .form-box input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 12px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-box small {
+      display: block;
+      margin-top: 10px;
+      color: #555;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .form-section {
+        padding: 60px 10px;
+      }
+
+      .form-box {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Sticky Island Header -->
+  <div class="header-wrapper">
+    <header>
+      <div class="logo"><span>RP</span><strong>Roofing</strong></div>
+      <div class="menu">
+        <button>☰</button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Reliable Roofing & Home Improvements</h1>
+    <p>RP Roofing and Home Improvements LTD provides expert roofing services you can trust. From repairs to full installations, our skilled team delivers high-quality workmanship across Guildford, Surrey, Brighton, and beyond. Call us today at <strong>07957 235728</strong>.</p>
+  </section>
+
+  <!-- Overlapping Customer Avatars -->
+  <section class="membership">
+    <div class="avatars">
+      <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="">
+      <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="">
+      <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="">
+      <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="">
+    </div>
+    <div class="membership-text">
+      <span style="color: #297CFF; font-weight: bold;">Trusted by</span><br>
+      Thousands across the UK
+    </div>
+  </section>
+
+  <!-- Request A Call Form -->
+  <section class="form-section">
+    <div class="form-box">
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Phone Number">
+      <input type="text" placeholder="Zip Code">
+      <button>Request A Call</button>
+      <small>By submitting your contact details, you agree to receive automated SMS/MMS messages from RP Roofing and Home Improvements LTD. Message & data rates may apply.</small>
+    </div>
+  </section>
+
+</body>
+</html>
