@@ -12,7 +12,6 @@
       background: #f9f9f9;
     }
 
-    /* ✅ Floating Island Header */
     .header-wrapper {
       position: sticky;
       top: 12px;
@@ -20,6 +19,7 @@
       display: flex;
       justify-content: center;
       pointer-events: none;
+      transition: top 0.3s ease;
     }
 
     header {
@@ -33,26 +33,30 @@
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       pointer-events: auto;
+      position: relative;
+      transition: padding 0.3s ease;
     }
 
-    .logo {
-      font-size: 20px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
+    header.shrink {
+      padding: 8px 24px;
     }
 
-    .logo span {
-      color: red;
+    .logo img {
+      height: 70px;
+      width: auto;
+      transition: height 0.3s ease;
     }
 
-    .logo strong {
-      color: #297CFF;
-      margin-left: 2px;
+    header.shrink .logo img {
+      height: 50px;
+    }
+
+    .menu {
+      position: relative;
     }
 
     .menu button {
-      background: #297CFF;
+      background: #e10600;
       border: none;
       color: white;
       padding: 10px 16px;
@@ -62,9 +66,54 @@
       cursor: pointer;
     }
 
+    .menu-content {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      min-width: 200px;
+      z-index: 1001;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .menu-content.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .menu-content h4 {
+      margin: 0;
+      padding: 12px 16px;
+      border-bottom: 1px solid #eee;
+      text-decoration: underline;
+      font-weight: 700;
+      font-size: 16px;
+      color: #e10600;
+    }
+
+    .menu-content div {
+      padding: 12px 16px;
+      font-weight: 600;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      cursor: default;
+    }
+
+    .menu-content div:last-child {
+      border-bottom: none;
+    }
+
     .hero {
       padding: 100px 20px 40px;
       text-align: center;
+      animation: fadeIn 1s ease;
     }
 
     .hero h1 {
@@ -99,6 +148,11 @@
       object-fit: cover;
       border: 2px solid white;
       margin-left: -10px;
+      transition: transform 0.3s ease;
+    }
+
+    .avatars img:hover {
+      transform: scale(1.1);
     }
 
     .membership-text {
@@ -106,28 +160,48 @@
     }
 
     .form-section {
-      background: url('https://images.unsplash.com/photo-1581093458791-1c8d3c2784f3?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      position: relative;
+      background: #000;
       padding: 80px 20px;
       display: flex;
       justify-content: center;
       align-items: center;
+      color: white;
+    }
+
+    .form-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://png.pngtree.com/thumb_back/fw800/background/20240619/pngtree-roof-of-house-in-background-of-the-sky-image_15799486.jpg') center center/cover no-repeat;
+      opacity: 0.4;
+      z-index: 0;
+      transition: opacity 0.3s ease;
     }
 
     .form-box {
+      position: relative;
       background: white;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
       padding: 30px;
       max-width: 400px;
       width: 100%;
+      animation: slideUp 1s ease;
+      z-index: 1;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .form-box input {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
       border-radius: 8px;
       border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
     }
 
     .form-box button {
@@ -139,6 +213,12 @@
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    .form-box button:hover {
+      background: #e10600;
     }
 
     .form-box small {
@@ -146,6 +226,25 @@
       margin-top: 10px;
       color: #555;
       font-size: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 20px 20px;
+      font-size: 16px;
+      background: #f0f0f0;
+      color: #333;
+      font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 600px) {
@@ -160,6 +259,10 @@
       .form-box {
         padding: 20px;
       }
+
+      .logo img {
+        height: 60px;
+      }
     }
   </style>
 </head>
@@ -167,10 +270,18 @@
 
   <!-- Floating Sticky Island Header -->
   <div class="header-wrapper">
-    <header>
-      <div class="logo"><span>RP</span><strong>Roofing</strong></div>
+    <header id="header">
+      <div class="logo">
+        <img src="https://i.imgur.com/1GwKyNG.png" alt="RP Roofing Logo">
+      </div>
       <div class="menu">
-        <button>☰</button>
+        <button onclick="toggleMenu()">☰</button>
+        <div id="menuDropdown" class="menu-content">
+          <h4>Services We Offer</h4>
+          <div>Roof Repairs</div>
+          <div>New Roofs</div>
+          <div>Gutter Repairs</div>
+        </div>
       </div>
     </header>
   </div>
@@ -190,22 +301,46 @@
       <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="">
     </div>
     <div class="membership-text">
-      <span style="color: #297CFF; font-weight: bold;">Trusted by</span><br>
-      Thousands across the UK
+      <span style="color: #e10600; font-weight: bold;">Trusted By,</span><br>
+       Thousands Around The UK
     </div>
   </section>
 
   <!-- Request A Call Form -->
   <section class="form-section">
-    <div class="form-box">
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Phone Number">
-      <input type="text" placeholder="Zip Code">
-      <button>Request A Call</button>
+    <form action="https://formspree.io/f/xvgaebnb" method="POST" class="form-box">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="phone" placeholder="Phone Number" required>
+      <input type="text" name="zip" placeholder="Zip Code" required>
+      <button type="submit">Request A Call</button>
       <small>By submitting your contact details, you agree to receive automated SMS/MMS messages from RP Roofing and Home Improvements LTD. Message & data rates may apply.</small>
-    </div>
+    </form>
   </section>
 
+  <!-- Footer Contact Info -->
+  <div class="footer">
+    Contact us — <strong>07957 235728</strong><br><br>
+    Offices based in:<br>
+    Guildford<br>
+    Surrey<br>
+    Brighton
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menuDropdown');
+      menu.classList.toggle('active');
+    }
+
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if(window.scrollY > 50) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+  </script>
 </body>
 </html>
